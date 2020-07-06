@@ -13,7 +13,14 @@
 <!--<![endif]-->
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width"/>
+    <!--<meta name="viewport" content="width=device-width"/>-->
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport"
+            content="width=device-width, initial-scale=1">
+      <meta name="format-detection" content="telephone=no">
+      <meta name="renderer" content="webkit">
+      <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
     {% block header %}
     {% endblock %}
     <link rel="profile" href="http://gmpg.org/xfn/11"/>
@@ -22,52 +29,69 @@
     <script src="{% static 'blog/js/html5.js' %}" type="text/javascript"></script>
     <![endif]-->
 
-    <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} &raquo; Feed"
-          href="/feed"/>
+    <link rel="alternate" type="application/rss+xml" title="{{ SITE_NAME }} &raquo; Feed" href="/feed"/>
 
     {% compress css %}
-        <link rel='stylesheet' id='twentytwelve-fonts-css'
-              href='{% static 'blog/fonts/fonts.css' %}'
-              type='text/css' media='all'/>
-        <link rel='stylesheet' id='twentytwelve-style-css' href='{% static 'blog/css/style.css' %}' type='text/css'
-              media='all'/>
-        <link href="{% static 'blog/css/oauth_style.css' %}" rel="stylesheet">
-        {% comment %}<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>{% endcomment %}
+    <link rel='stylesheet' id='twentytwelve-fonts-css' href="{% static 'blog/fonts/fonts.css' %}"
+          type='text/css' media='all'/>
+    <link rel='stylesheet' id='twentytwelve-style-css' href="{% static 'blog/css/style.css' %}" type='text/css' media='all'/>
+    <link href="{% static 'blog/css/oauth_style.css' %}" rel="stylesheet">
+    {% comment %}
+
+        <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    {% endcomment %}
         <!--[if lt IE 9]>
-        <link rel='stylesheet' id='twentytwelve-ie-css'  href='{% static 'blog/css/ie.css' %}' type='text/css' media='all' />
+        <link rel='stylesheet' id='twentytwelve-ie-css'  href="{% static 'blog/css/ie.css' %}" type='text/css' media='all' />
         <![endif]-->
         <link rel="stylesheet" href="{% static 'pygments/default.css' %}"/>
         <link rel="stylesheet" href="{% static 'blog/css/nprogress.css' %}">
+
+        <!-- Live 2d for css-->
+        <link rel="stylesheet" href="{% static 'live2D/waifu.min.css' %}">
+
+        <!-- amazeui for css -->
+        <link rel="stylesheet" href="{% static 'assets/css/amazeui.min.css' %}">
+
+        <!-- mdeditor for css -->
+        <link rel="stylesheet" href="{% static 'mdeditor/css/editormd.preview.css' %}">
+        <link rel="stylesheet" href="{% static 'mdeditor/css/editormd.min.css' %}">
+
         {% block compress_css %}
         {% endblock %}
     {% endcompress %}
 </head>
 
-<body class="home blog custom-font-enabled">
-<div id="page" class="hfeed site">
-    <header id="masthead" class="site-header" role="banner">
-        <hgroup>
-            <h1 class="site-title"><a href="/" title="{{ SITE_NAME }}" rel="home">{{ SITE_NAME }}</a>
-            </h1>
-            <h2 class="site-description">{{ SITE_DESCRIPTION }}</h2>
-        </hgroup>
+<body leftmargin="0">
+<!--[if lte IE 9]>
+<p class="browsehappy">你正在使用<strong>过时</strong>的浏览器，Amaze UI 暂不支持。 请 <a
+  href="http://browsehappy.com/" target="_blank">升级浏览器</a>
+  以获得更好的体验！</p>
+<![endif]-->
+
+
+<div id="" class="">
+
+    <header id="masthead" class="am-topbar" role="banner">
+        <h1 class="am-topbar-brand">
+          <a href="/" title="{{ SITE_NAME }}" rel="home">{{ SITE_NAME }}</a>
+        </h1>
 
         {% cache 36000 nav %}
             {% include 'share_layout/nav.html' %}
         {% endcache %}
-
     </header><!-- #masthead -->
-    <div id="main" class="wrapper">
+            <div  id="main" class="am-g am-g-fixed blog-g-fixed">
+                 <div  class="am-u-md-8">
+                {% block content %}
 
-        {% block content %}
-        {% endblock %}
-
-
+                {% endblock %}
+                </div>
         {% block sidebar %}
+
         {% endblock %}
 
+    </div>
 
-    </div><!-- #main .wrapper -->
     {% include 'share_layout/footer.html' %}
 </div><!-- #page -->
 
@@ -78,10 +102,131 @@
         <script type="text/javascript" src="{% static 'blog/js/nprogress.js' %}"></script>
         <script src="{% static 'blog/js/blog.js' %}" type="application/javascript"></script>
         <script src="{% static 'blog/js/navigation.js' %}" type="application/javascript"></script>
-        {% block compress_js %}
+    <!-- live2D for js -->
+        <script src="{% static 'live2D/jquery.min.js' %}"></script>
+        <script src="{% static 'live2D/jquery-ui.min.js' %}"></script>
+        <script src="{% static 'live2D/waifu-tips.min.js' %}"></script>
+        <script src="{% static 'live2D/live2d.min.js' %}"></script>
+
+    <!-- AmazeUI for is -->
+        <script src="{% static 'assets/js/amazeui.min.js' %}"></script>
+        <!--[if lt IE 9]>
+        <script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+        <script src="{% static 'assets/js/amazeui.ie8polyfill.min.js' %}"></script>
+        <![endif]-->
+
+     <script type="text/javascript">
+        /* 可直接修改部分参数 */
+              /* 可直接修改部分参数 */
+        live2d_settings['modelId'] = 1;                  // 默认模型 ID
+        live2d_settings['modelTexturesId'] = 87;         // 默认材质 ID
+        live2d_settings['modelStorage'] = false;         // 不储存模型 ID
+        live2d_settings['canCloseLive2d'] = true;       // 隐藏 关闭看板娘 按钮
+        live2d_settings['canTurnToHomePage'] = false;    // 隐藏 返回首页 按钮
+        live2d_settings['waifuSize'] = '250x300';        // 看板娘大小
+        live2d_settings['waifuTipsSize'] = '300x150';    // 提示框大小
+        live2d_settings['waifuFontSize'] = '25px';       // 提示框字体
+        live2d_settings['waifuToolFont'] = '36px';       // 工具栏字体
+        live2d_settings['waifuToolLine'] = '35px';       // 工具栏行高
+        live2d_settings['waifuToolTop'] = '-60px';       // 工具栏顶部边距
+        live2d_settings['waifuDraggable'] = 'axis-x';    // 拖拽样式
+        /* 在 initModel 前添加 */
+        initModel("{% static 'live2D/waifu-tips.json' %}")
+    </script>
+    <style type="text/javascript">
+         /* 妹子Ui*/
+
+    @media only screen and (min-width: 1200px) {
+      .blog-g-fixed {
+        max-width: 1200px;
+      }
+    }
+
+    @media only screen and (min-width: 641px) {
+      .blog-sidebar {
+        font-size: 1.4rem;
+      }
+    }
+
+    .blog-main {
+      padding: 20px 0;
+    }
+
+    .blog-title {
+      margin: 10px 0 20px 0;
+    }
+
+    .blog-meta {
+      font-size: 14px;
+      margin: 10px 0 20px 0;
+      color: #222;
+    }
+
+    .blog-meta a {
+      color: #27ae60;
+    }
+
+    .blog-pagination a {
+      font-size: 1.4rem;
+    }
+
+    .blog-team li {
+      padding: 4px;
+    }
+
+    .blog-team img {
+      margin-bottom: 0;
+    }
+
+    .blog-content img,
+    .blog-team img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .blog-footer {
+      padding: 10px 0;
+      text-align: center;
+    }
+
+
+
+  </style>
+
+
+    <!-- mdeditor for js -->
+     <script src="{% static 'mdeditor/editormd.js' %}"></script>
+     <script src="{% static 'mdeditor/lib/marked.min.js' %}"></script>
+    <script src="{% static 'mdeditor/lib/raphael.min.js' %}"></script>
+    <script src="{% static 'mdeditor/lib/underscore.min.js' %}"></script>
+    <script src="{% static 'mdeditor/lib/sequence-diagram.min.js' %}"></script>
+     <script src="{% static 'mdeditor/lib/prettify.min.js' %}"></script>
+    <script src="{% static 'mdeditor/lib/flowchart.min.js' %}"></script>
+    <script src="{% static 'mdeditor/lib/jquery.flowchart.min.js' %}"></script>
+
+
+    <!--<script src="{% static 'assets/js/strapdown.js' %}"></script>-->
+<!--<script type="text/javascript">-->
+    <!--var testEditor;-->
+    <!--$(function () {-->
+        <!--testEditor = editormd.markdownToHTML("doc-content", {//注意：这里是上面DIV的id-->
+            <!--htmlDecode: "style,script,iframe",-->
+            <!--emoji: true,-->
+            <!--taskList: true,-->
+            <!--tex: true, // 默认不解析-->
+            <!--flowChart: true, // 默认不解析-->
+            <!--sequenceDiagram: true, // 默认不解析-->
+            <!--codeFold: true,-->
+    <!--});});-->
+ <!--</script>-->
+
+
+    {% block compress_js %}
         {% endblock %}
     {% endcompress %}
     {% block footer %}
     {% endblock %}
 </footer>
+
 </html>
+

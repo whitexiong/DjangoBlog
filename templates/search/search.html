@@ -16,7 +16,7 @@
             {% if query %}
                 <header class="archive-header">
 
-                    <h2 class="archive-title"> 搜索：<span style="color: red">{{ query }}</span></h2>
+                    <h2 class="am-btn am-btn-default am-round"> 搜索：<span style="color: red">{{ query }}</span></h2>
                 </header><!-- .archive-header -->
             {% endif %}
             {% if query and page.object_list %}
@@ -29,7 +29,8 @@
                         {% if page.has_previous %}
                             <div class="nav-previous"><a
                                     href="?q={{ query }}&amp;page={{ page.previous_page_number }}"><span
-                                    class="meta-nav">&larr;</span> 早期文章</a></div>
+                                    class="meta-nav">&larr;</span> 早期文章</a>
+                            </div>
                         {% endif %}
                         {% if page.has_next %}
                             <div class="nav-next"><a href="?q={{ query }}&amp;page={{ page.next_page_number }}">较新文章
