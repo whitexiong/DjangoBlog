@@ -1,5 +1,5 @@
 {% load blog_tags %}
-<div id="secondary" class="am-u-md-4 blog-sidebar" role="complementary">
+<div id="secondary"  class="am-u-md-4 blog-sidebar" role="complementary">
 
     <div class="am-panel-group">
 
@@ -104,16 +104,17 @@
         </section>
     {% endif %}
     {% if show_google_adsense %}
-        <aside id="text-2" class="widget widget_text">
-                <h3 class="widget-title">Google AdSense</h3>
-            <div class="textwidget">
+        <section class="am-panel am-panel-default">
+                <div class="am-panel-hd">Google AdSense</div>
+                 <div class="am-panel-bd">
                 {{ google_adsense_codes|safe }}
-            </div>
-        </aside>
+                </div>
+        </section>
     {% endif %}
     {% if sidebar_tags %}
-        <aside id="tag_cloud-2" class="widget widget_tag_cloud"><h3 class="widget-title">标签云</h3>
-            <div class="tagcloud">
+        <section class="am-panel am-panel-default">
+            <div class="am-panel-hd">标签云</div>
+            <div class="am-panel-bd">
                 {% for tag,count,size in sidebar_tags %}
                     <a href="{{ tag.get_absolute_url }}"
                        class="tag-link-{{ tag.id }} tag-link-position-{{ tag.id }}"
@@ -121,7 +122,7 @@
                     </a>
                 {% endfor %}
             </div>
-        </aside>
+        </section>
     {% endif %}
     <!--<aside id="text-2" class="widget widget_text"><h3 class="widget-title">欢迎您star或者fork本站源代码</h3>-->
         <!--<div class="textwidget">-->

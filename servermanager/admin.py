@@ -9,6 +9,7 @@ class CommandsAdmin(admin.ModelAdmin):
 
 class EmailSendLogAdmin(admin.ModelAdmin):
     list_display = ('title', 'emailto', 'send_result', 'created_time')
+    list_per_page = 5
     readonly_fields = (
         'title',
         'emailto',

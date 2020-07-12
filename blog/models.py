@@ -360,3 +360,5 @@ class BlogSettings(models.Model):
         super().save(*args, **kwargs)
         from DjangoBlog.utils import cache
         cache.clear()
+
+

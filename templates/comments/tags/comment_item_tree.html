@@ -25,7 +25,13 @@
             {{ comment_item.created_time }}
         </div>
 
-        <p>{{ comment_item.body |escape|custom_markdown }}</p>
+        <p>
+                 <!--<div id="testCommentMarkdown">-->
+                    <!--<textarea style="display:none; " >-->
+            {{ comment_item.body |escape|custom_markdown }}
+                    <!--</textarea>-->
+                <!--</div>-->
+        </p>
 
         <div class="reply"><a rel="nofollow" class="comment-reply-link"
                               href="javascript:void(0)"

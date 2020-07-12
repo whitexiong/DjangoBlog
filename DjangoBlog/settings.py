@@ -29,18 +29,20 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get(
     'DJANGO_SECRET_KEY') or 'n9ceqv38)#&mwuat@(mjb_p%em$e8$qyr#fw9ot!=ba6lijx-6'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env_to_bool('DJANGO_DEBUG', False)
+DEBUG = env_to_bool('DJANGO_DEBUG', True)
 # DEBUG = False
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*', '127.0.0.1', 'example.com']
+ALLOWED_HOSTS = ['*', '139.196.126.203', 'zjlovexb.xyz']
 # Application definition
 
 
 INSTALLED_APPS = [
     # 'django.contrib.admin',
+    'simplepro',
     'simpleui',
+    'import_export',
     'django.contrib.admin.apps.SimpleAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,7 +59,8 @@ INSTALLED_APPS = [
     'oauth',
     'servermanager',
     'owntracks',
-    'compressor'
+    'compressor',
+    'django_apscheduler'
 ]
 
 MIDDLEWARE = [
@@ -72,7 +75,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
-    'blog.middleware.OnlineMiddleware'
+    'blog.middleware.OnlineMiddleware',
+    'simplepro.middlewares.SimpleMiddleware'
 ]
 
 ROOT_URLCONF = 'DjangoBlog.urls'
@@ -148,9 +152,10 @@ USE_TZ = True
 
 
 HAYSTACK_CONNECTIONS = {
-    'default': {
+      'default': {
         'ENGINE': 'DjangoBlog.whoosh_cn_backend.WhooshEngine',
-        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+      #  'ENGINE': 'DjangoBlog.elasticsearch_backend.ElasticSearchEngine',
+       'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
     },
 }
 # Automatically update searching index
@@ -199,16 +204,21 @@ BAIDU_NOTIFY_URL = os.environ.get('DJANGO_BAIDU_NOTIFY_URL') \
 
 # Email:
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_USE_TLS = env_to_bool('DJANGO_EMAIL_TLS', False)
-EMAIL_USE_SSL = env_to_bool('DJANGO_EMAIL_SSL', True)
-EMAIL_HOST = os.environ.get('DJANGO_EMAIL_HOST') or '986247535@qq.com'
-EMAIL_PORT = int(os.environ.get('DJANGO_EMAIL_PORT') or 465)
-EMAIL_HOST_USER = os.environ.get('DJANGO_EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('DJANGO_EMAIL_PASSWORD')
+EMAIL_USE_TLS = env_to_bool('DJANGO_EMAIL_TLS', True)
+EMAIL_USE_SSL = env_to_bool('DJANGO_EMAIL_SSL', False)
+EMAIL_HOST = os.environ.get('DJANGO_EMAIL_HOST') or 'smtp.qq.com'
+EMAIL_PORT = int(os.environ.get('DJANGO_EMAIL_PORT') or 587)
+EMAIL_HOST_USER = '986247535@qq.com'
+EMAIL_HOST_PASSWORD = 'gbqsnpftkknobdih'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_SSL_CERTFILE = None
+EMAIL_SSL_KEYFILE = None
+EMAIL_TIMEOUT = None
+
+
 # Setting debug=false did NOT handle except email notifications
-ADMINS = [('admin', os.environ.get('DJANGO_ADMIN_EMAIL') or '986247535@qq.com')]
+ADMINS = [('admin', os.environ.get('DJANGO_ADMIN_EMAIL') or 'admin@admin.com')]
 # WX ADMIN password(Two times md5)
 WXADMIN = os.environ.get(
     'DJANGO_WXADMIN_PASSWORD') or '995F03AC401D6CABABAEF756FC4D43C7'
@@ -270,6 +280,12 @@ LOGGING = {
     }
 }
 
+
+
+
+
+
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -290,6 +306,50 @@ COMPRESS_JS_FILTERS = [
     'compressor.filters.jsmin.JSMinFilter'
 ]
 
+
+SIMPLEUI_CONFIG = {
+    # 在自定义菜单的基础上保留系统模块
+    'system_keep': True,
+    'menus': [{
+        'name': 'Simpleui',
+        'icon': 'fas fa-code',
+        'url': 'https://gitee.com/tompeppa/simpleui',
+        'codename':'simpleui'
+    }, {
+        'name': '测试',
+        'icon': 'fa fa-file',
+        'codename': 'test',
+        'models': [{
+            'name': 'Baidu',
+            'url': 'http://baidu.com',
+            'icon': 'far fa-surprise',
+            'codename':'baidu'
+        }, {
+            'name': '内网穿透',
+            'url': 'https://www.wezoz.com',
+            'icon': 'fab fa-github',
+            'codename':'nat'
+        }, {
+            'name': '内网穿透',
+            'url': 'https://www.wezoz.com',
+            'icon': 'fab fa-github'
+        }, {
+            'name': '登录页嵌套测试',
+            'url': '/login'
+        }]
+    }]
+}
+
+
+# ELASTICSEARCH_DSL = {
+#     'default': {
+#         'hosts': '127.0.0.1:9200'
+#     },
+# }
+
+
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
 MEDIA_URL = '/media/'
 X_FRAME_OPTIONS = 'SAMEORIGIN'
+SIMPLEUI_HOME_ICON = 'fa fa-user'

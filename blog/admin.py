@@ -56,7 +56,7 @@ open_article_commentstatus.short_description = '打开文章评论'
 
 
 class ArticlelAdmin(admin.ModelAdmin):
-    list_per_page = 20
+    list_per_page = 5
     search_fields = ('body', 'title')
     form = ArticleForm
     list_display = (

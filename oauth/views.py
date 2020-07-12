@@ -125,6 +125,7 @@ def authorize(request):
 
 
 def emailconfirm(request, id, sign):
+    print(1111111111111)
     if not sign:
         return HttpResponseForbidden()
     if not get_md5(
@@ -153,7 +154,7 @@ def emailconfirm(request, id, sign):
 
     site = get_current_site().domain
     content = '''
-     <p>恭喜您，您已经成功绑定您的邮箱，您可以使用{type}来直接免密码登录本网站.欢迎您继续关注本站，地址是</p>
+         <p>恭喜您，您已经成功绑定您的邮箱，您可以使用{type}来直接免密码登录本网站.欢迎您继续关注本站，地址是</p>
 
                 <a href="{url}" rel="bookmark">{url}</a>
 
@@ -208,7 +209,7 @@ class RequireEmailView(FormView):
                        str(oauthuser.id) + settings.SECRET_KEY)
         site = get_current_site().domain
         if settings.DEBUG:
-            site = '127.0.0.1:8000'
+            site = '139.196.126.203:80'
         path = reverse('oauth:email_confirm', kwargs={
             'id': oauthid,
             'sign': sign
@@ -216,14 +217,43 @@ class RequireEmailView(FormView):
         url = "http://{site}{path}".format(site=site, path=path)
 
         content = """
-                <p>请点击下面链接绑定您的邮箱</p>
-
-                <a href="{url}" rel="bookmark">{url}</a>
-
-                再次感谢您！
-                <br />
-                如果上面链接无法打开，请将此链接复制至浏览器。
-                {url}
+                <div style="background-color:#ECECEC; padding: 35px;">
+    <table cellpadding="0" align="center"
+           style="width: 600px; margin: 0px auto; text-align: left; position: relative; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; font-size: 14px; font-family:微软雅黑, 黑体; line-height: 1.5; box-shadow: rgb(153, 153, 153) 0px 0px 5px; border-collapse: collapse; background-position: initial initial; background-repeat: initial initial;background:#fff;">
+        <tbody>
+        <tr>
+            <th valign="middle"
+                style="height: 25px; line-height: 25px; padding: 15px 35px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #42a3d3; background-color: #49bcff; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">
+                <font face="微软雅黑" size="5" style="color: rgb(255, 255, 255); ">欢迎来到Cxx1.COM! </font>
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <div style="padding:25px 35px 40px; background-color:#fff;">
+                    <h2 style="margin: 5px 0px; ">
+                        <font color="#333333" style="line-height: 20px; ">
+                            <font style="line-height: 22px; " size="4">
+                                亲爱的用户请绑定邮箱</font>
+                        </font>
+                    </h2>
+                    <p>首先感谢您加入本Cxx1站！请点击下方链接<br>
+                        <b> <a href="{url}" rel="bookmark">{url}</a></b><br>
+                        <b>如果没法打开请点击: {url} 并且复制到游览器</b>
+                    <p align="right"></p>
+                    <div style="width:700px;margin:0 auto;">
+                        <div style="padding:10px 10px 0;border-top:1px solid #ccc;color:#747474;margin-bottom:20px;line-height:1.3em;font-size:12px;">
+                            <p>此为系统邮件，请勿回复<br>
+                                请保管好您的邮箱，避免账号被他人盗用
+                            </p>
+                            <p>©***</p>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
                 """.format(url=url)
         send_email(emailto=[email, ], title='绑定您的电子邮箱', content=content)
         url = reverse('oauth:bindsuccess', kwargs={

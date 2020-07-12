@@ -33,6 +33,14 @@ class DjangoBlogAdminSite(AdminSite):
     def __init__(self, name='admin'):
         super().__init__(name)
 
+    def get_queryset(self, request):  # 重写get_queryset
+        qs = super(After_saleAdmin, self).get_queryset(request)
+        if request.user.is_superuser:  # 判断如果是超级管理员返回所有信息
+            return qs
+        else:
+            return qs.filter(User=request.user)  # User为当前关联的用户，如果是普通管理
+
+
     def has_permission(self, request):
         return request.user.is_superuser
 
@@ -71,3 +79,4 @@ admin_site.register(OwnTrackLog, OwnTrackLogsAdmin)
 admin_site.register(Site, SiteAdmin)
 
 admin_site.register(LogEntry, LogEntryAdmin)
+

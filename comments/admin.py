@@ -18,7 +18,7 @@ enable_commentstatus.short_description = '启用评论'
 
 
 class CommentAdmin(admin.ModelAdmin):
-    list_per_page = 20
+    list_per_page = 5
     list_display = (
         'id',
         'body',
