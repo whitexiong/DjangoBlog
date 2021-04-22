@@ -24,22 +24,24 @@ var agentinfo = null;  
 
 
 testEditormdView = editormd.markdownToHTML("test-editormd-view", {
-                    htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                    htmlDecode      : true,  // you can filter tags decode
                     emoji           : true,
                     taskList        : true,
                     tex             : true,  // 默认不解析
                     flowChart       : true,  // 默认不解析
                     sequenceDiagram : true,  // 默认不解析
+                    tocm : true,
                 });
 
 
 testCommentMarkdown = editormd.markdownToHTML("testCommentMarkdown", {
-                    htmlDecode      : "style,script,iframe",  // you can filter tags decode
+                    htmlDecode      : true,  // you can filter tags decode
                     emoji           : true,
                     taskList        : true,
                     tex             : true,  // 默认不解析
                     flowChart       : true,  // 默认不解析
                     sequenceDiagram : true,  // 默认不解析
+                    tocm : true,
                 });
 
 

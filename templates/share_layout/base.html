@@ -43,7 +43,8 @@
     {% comment %}
 
         <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
-        <script data-ad-client="ca-pub-2762414263954067" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/3.2.0/js/transition.js"></script>
+         <script data-ad-client="ca-pub-2762414263954067" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
     {% endcomment %}
         <!--[if lt IE 9]>
@@ -63,7 +64,8 @@
         <link rel="stylesheet" href="{% static 'mdeditor/css/editormd.min.css' %}">
 
 
-
+        <!--zoom for css-->
+        <link rel="stylesheet" href="{% static 'zoom/css/zoom.css' %}">
 
         {% block compress_css %}
         {% endblock %}
@@ -81,7 +83,7 @@
 <![endif]-->
 
 
-<div id="" class="">
+<div id="main" class="">
 
     <header id="masthead" class="am-topbar" role="banner">
         <h1 class="am-topbar-brand am-img-thumbnail am-img-responsive">
@@ -95,7 +97,7 @@
     </header><!-- #masthead -->
 
 
-                <div  id="main" class="" >
+                <div  id="" class="" >
                  <div  class="am-u-md-8">
 
                     {% block content %}
@@ -143,9 +145,19 @@
          <script src="{% static 'mdeditor/lib/prettify.min.js' %}"></script>
         <script src="{% static 'mdeditor/lib/flowchart.min.js' %}"></script>
         <script src="{% static 'mdeditor/lib/jquery.flowchart.min.js' %}"></script>
-
         <script src="{% static 'assets/js/mdeditor.setting.js' %}"></script>
 
+
+    <!--zoom for js-->
+
+        <script src="{% static 'zoom/js/zoom.js' %}"></script>
+        <script>
+
+                $("img").attr("data-action","zoom")
+
+        </script>
+
+    <!--live2D的模型参数-->
         <script>
                /* 可直接修改部分参数 */
               /* 可直接修改部分参数 */
