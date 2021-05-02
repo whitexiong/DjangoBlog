@@ -34,15 +34,15 @@ DEBUG = env_to_bool('DJANGO_DEBUG', False)
 TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['*', '139.196.126.203', 'www.zjlovexb.xyz']
+ALLOWED_HOSTS = ['*', '139.196.126.203', 'www.cxx1.com']
 # Application definition
 
 
 INSTALLED_APPS = [
     # 'django.contrib.admin',
-    'simplepro',
+    # 'simplepro',
     'simpleui',
-    'import_export',
+    # 'import_export',
     'django.contrib.admin.apps.SimpleAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -60,7 +60,8 @@ INSTALLED_APPS = [
     'servermanager',
     'owntracks',
     'compressor',
-    'django_apscheduler'
+    'django_apscheduler',
+    'django_crontab'
 ]
 
 MIDDLEWARE = [
@@ -76,7 +77,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.http.ConditionalGetMiddleware',
     'blog.middleware.OnlineMiddleware',
-    'simplepro.middlewares.SimpleMiddleware'
+    # 'simplepro.middlewares.SimpleMiddleware'
 ]
 
 ROOT_URLCONF = 'DjangoBlog.urls'
@@ -218,7 +219,7 @@ EMAIL_TIMEOUT = None
 
 
 # Setting debug=false did NOT handle except email notifications
-ADMINS = [('admin', os.environ.get('DJANGO_ADMIN_EMAIL') or 'admin@admin.com')]
+ADMINS = [('root', os.environ.get('DJANGO_ADMIN_EMAIL') or '986247535@qq.com')]
 # WX ADMIN password(Two times md5)
 WXADMIN = os.environ.get(
     'DJANGO_WXADMIN_PASSWORD') or '995F03AC401D6CABABAEF756FC4D43C7'

@@ -28,7 +28,7 @@
 
 {% endblock %}
 {% block content %}
-    <div id="primary" class="site-content">
+    <div id="primary" class="">
         <div id="content" role="main">
             {% load_article_detail article False user %}
 
@@ -73,7 +73,9 @@
 
     </div><!-- #primary -->
 
-    <div class="waifu">
+
+    <!--看板娘-->
+     <div class="waifu">
             <div class="waifu-tips"></div>
             <canvas id="live2d" class="live2d"></canvas>
             <div class="waifu-tool">
@@ -89,6 +91,7 @@
 
 
 {% endblock %}
+
 
 {% block sidebar %}
     {% with request.user.username|add:'p' as cachekey %}

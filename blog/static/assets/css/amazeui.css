@@ -7418,7 +7418,7 @@ img.am-thumbnail,
   -webkit-overflow-scrolling: touch;
 }
 .am-scrollable-vertical {
-  height: 240px;
+  height: 1000px;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   resize: vertical;

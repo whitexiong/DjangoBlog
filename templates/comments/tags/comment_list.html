@@ -10,7 +10,7 @@
     </ul>
     {% if article_comments %}
         {% cache 36000 article_comments article.id %}
-            <div id="commentlist-container" class="comment-tab" style="display: block;">
+            <div id="commentlist-container" class="comment-tab am-scrollable-vertical" style="display: block;">
                 <ol class="commentlist">
 
 
@@ -28,3 +28,7 @@
         {% endcache %}
     {% endif %}
 </section>
+
+
+
+

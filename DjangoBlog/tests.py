@@ -36,7 +36,7 @@ class DjangoBlogTest(TestCase):
         import os
         ```
 
-        [url](https://www.lylinux.net/)
+        [url](http://www.cxx1.com/)
 
         [ddd](http://www.baidu.com)
 

@@ -2,22 +2,31 @@
 {% load cache %}
 <article id="post-{{ article.pk }} "
          class="post-{{ article.pk }} post type-post status-publish format-standard hentry">
-    <header class="entry-header">
 
+
+    <header class="entry-header">
+        <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" >
         <hr class="entry-title">
             {% if  isindex %}
                 {% if article.article_order > 0 %}
+                    <h2 class="am-titlebar-title">
                     <a href="{{ article.get_absolute_url }}"
                        rel="bookmark">【置顶】{{ article.title }}</a>
+                        </h2>
                 {% else %}
+
+                    <h2 class="am-titlebar-title">
                     <a href="{{ article.get_absolute_url }}"
                        rel="bookmark">{{ article.title }}</a>
+                    </h2>
                 {% endif %}
 
             {% else %}
                 {{ article.title }}
             {% endif %}
         </hr>
+        </div>
+
         <div class="comments-link">
             {% if article.comment_status == "o" and open_site_comment %}
                 <a href="{{ article.get_absolute_url }}#comments" class="ds-thread-count" data-thread-key="3815"
@@ -44,12 +53,14 @@
             {% endif %}
         {% endif %}
     </header><!-- .entry-header -->
+    <ol>
     <div  class="entry-content" itemprop="articleBody">
 
         {% if  isindex %}
             {{ article.body|custom_markdown|escape|truncatechars_content }}
-            <p class='read-more'><a
-                    href=' {{ article.get_absolute_url }}'>Read more</a></p>
+                <p class='read-more'><a
+                    href=' {{ article.get_absolute_url }}'>Read more</a>
+                </p>
 
         {% else %}
                  <div id="test-editormd-view" class="">

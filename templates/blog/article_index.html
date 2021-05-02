@@ -22,10 +22,12 @@
 
 
             {% if page_type and tag_name %}
-                <header class="archive-header">
+                <div data-am-widget="titlebar" class="am-titlebar am-titlebar-default" >
+                    <header class="archive-header">
 
-                    <p class="archive-title">{{ page_type }}：<span>{{ tag_name }}</span></p>
-                </header><!-- .archive-header -->
+                        <p class="am-titlebar-title">{{ page_type }}：<span>{{ tag_name }}</span></p>
+                    </header><!-- .archive-header -->
+                </div>
             {% endif %}
             {% for article in article_list %}
                 {% load_article_detail article True user %}

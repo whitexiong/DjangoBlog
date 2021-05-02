@@ -217,8 +217,8 @@ article.post-password-required input[type=submit],
     font-size: 0.785714286rem;
     line-height: 1.428571429;
     font-weight: normal;
-    color: #7c7c7c;
-    background-color: #e6e6e6;
+    color: #cf00c4;
+    background-color: #e6a4e2;
     background-repeat: repeat-x;
     background-image: -moz-linear-gradient(top, #f4f4f4, #e6e6e6);
     background-image: -ms-linear-gradient(top, #f4f4f4, #e6e6e6);
@@ -250,8 +250,8 @@ input[type="submit"]:hover,
 input[type="button"]:hover,
 input[type="reset"]:hover,
 article.post-password-required input[type=submit]:hover {
-    color: #5e5e5e;
-    background-color: #ebebeb;
+    color: #352c33;
+    background-color: #eb4f5d;
     background-repeat: repeat-x;
     background-image: -moz-linear-gradient(top, #f9f9f9, #ebebeb);
     background-image: -ms-linear-gradient(top, #f9f9f9, #ebebeb);
@@ -1750,7 +1750,7 @@ img#wpstats {
     }
 
     .main-navigation li ul li a {
-        background: #efefef;
+        background: #47c174;    /*导航栏背景色*/
         border-bottom: 1px solid #ededed;
         display: block;
         font-size: 11px;
@@ -1773,7 +1773,7 @@ img#wpstats {
     .main-navigation .current-menu-ancestor > a,
     .main-navigation .current_page_item > a,
     .main-navigation .current_page_ancestor > a {
-        color: #636363;
+        color: #de001f;
         font-weight: bold;
     }
 
@@ -2437,4 +2437,5 @@ li #reply-title {
     float: right;
     font-size: small;
 }
+
 
